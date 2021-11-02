@@ -5,14 +5,23 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-
     <title>This Animal Does Not Exist</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
 </head>
 
 <body>
     <div id="app">
+        <div class="content">
+            <div class="columns is-centered">
+                <div class="column is-one-third">
+        <h1>This Animal Does Not Exist</h1>
         <img :src=imageUrl alt="image">
+        <div class="level-item">
+        <button class="button is-primary" @click="refreshSeed">生成！</button>
+    </div>
+    </div>
+    </div>
+    </div>
     </div>
 
     <script src="https://unpkg.com/vue@next"></script>
@@ -20,16 +29,22 @@
         const App = {
             data() {
                 return {
-                    
+                    seed: 1
                 }
+            },
+            methods: {
+                refreshSeed() {
+                    let seedList = [...Array(1000).keys()]
+                    this.seed  = seedList[Math.floor(Math.random()*seedList.length)]
+                    
+                },
             },
             computed: {
                 imageUrl() {
-                    let items = [...Array(1000).keys()]
-                    let item = items[Math.floor(Math.random()*items.length)]
-                    let seed = ("000"+item.toString()).slice(-4)
                     
-                    return `http://r1wz61x5x.hn-bkt.clouddn.com/afhq/seed${seed}.png`
+                    let seedString = ("000"+this.seed.toString()).slice(-4)
+                    
+                    return `https://ai.mistgpu.com/afhq/seed${seedString}.png`
                 }
             }
         }
