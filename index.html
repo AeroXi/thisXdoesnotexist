@@ -5,25 +5,34 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>This Animal Does Not Exist</title>
 </head>
 
 <body>
-    <div id="counter">
-        Counter: {{ counter }}
+    <div id="app">
+        <img :src=imageUrl alt="image">
     </div>
 
     <script src="https://unpkg.com/vue@next"></script>
     <script>
-        const Counter = {
+        const App = {
             data() {
                 return {
-                    counter: 0
+                    
+                }
+            },
+            computed: {
+                imageUrl() {
+                    let items = [...Array(1000).keys()]
+                    let item = items[Math.floor(Math.random()*items.length)]
+                    let seed = ("000"+item.toString()).slice(-4)
+                    
+                    return `http://r1wz61x5x.hn-bkt.clouddn.com/afhq/seed${seed}.png`
                 }
             }
         }
 
-        Vue.createApp(Counter).mount('#counter')
+        Vue.createApp(App).mount('#app')
     </script>
 </body>
 
