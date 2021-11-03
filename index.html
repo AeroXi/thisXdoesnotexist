@@ -14,15 +14,27 @@
         <div class="content">
             <div class="columns is-centered">
                 <div class="column is-one-third">
-        <h1>This Animal Does Not Exist</h1>
-        <p>Powered by StyleGAN3 + <a href="https://mistgpu.com">MistGPU</a> + Vercel + Qiniu Cloud</p>
-        <img :src=imageUrl alt="image">
-        <div class="level-item">
-        <button class="button is-primary" @click="refreshSeed">生成！</button>
-    </div>
-    </div>
-    </div>
-    </div>
+                    <h1>This Animal Does Not Exist</h1>
+
+                    <img :src=imageUrl alt="image">
+                    <div class="level-item">
+                        <button class="button is-primary" @click="refreshSeed">生成！</button>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <footer class="footer">
+            <div class="content has-text-centered">
+                <!-- Place this tag where you want the button to render. -->
+                <a class="github-button" href="https://github.com/aeroxi/thisXdoesnotexist" data-icon="octicon-star"
+                    data-size="large" aria-label="Star aeroxi/thisXdoesnotexist on GitHub">Star</a> &nbsp;
+                <!-- Place this tag where you want the button to render. -->
+                <a class="github-button" href="https://github.com/aeroxi" data-size="large"
+                    aria-label="Follow @aeroxi on GitHub">Follow @aeroxi</a>
+                <p>Powered by StyleGAN3 + <a href="https://mistgpu.com">MistGPU</a> + Vercel + Qiniu Cloud</p>
+            </div>
+        </footer>
     </div>
 
     <script src="https://unpkg.com/vue@next"></script>
@@ -36,15 +48,15 @@
             methods: {
                 refreshSeed() {
                     let seedList = [...Array(1000).keys()]
-                    this.seed  = seedList[Math.floor(Math.random()*seedList.length)]
-                    
+                    this.seed = seedList[Math.floor(Math.random() * seedList.length)]
+
                 },
             },
             computed: {
                 imageUrl() {
-                    
-                    let seedString = ("000"+this.seed.toString()).slice(-4)
-                    
+
+                    let seedString = ("000" + this.seed.toString()).slice(-4)
+
                     return `https://ai.mistgpu.com/afhq/seed${seedString}.png`
                 }
             }
@@ -52,6 +64,8 @@
 
         Vue.createApp(App).mount('#app')
     </script>
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
 </body>
 
 </html>
